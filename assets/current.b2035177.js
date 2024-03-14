@@ -1,0 +1,48 @@
+import"./modulepreload-polyfill.c7c6310f.js";const ot="#000000",C="#999",f="#1344ff",E="#0098ff",B="#4cda64",nt="#fc75b7",it="#7766f5",st="#e1ad7d",A="#6F6F6F",L="#a3a3a3",b="#d4d4d4",v="#9b9b9b",ct="#c1c8fc",lt="#FFD9EC",S=new URLSearchParams(window.location.search),T=`${S.get("fname")}.json`,w=S.get("car_id");console.log(`fname: ${T}`);console.log(`carID : ${w}`);const M=0,k=1;var p=!1,g;async function rt(o){try{const t=await fetch(o);if(!t.ok)throw new Error(`JSON \uC77D\uAE30 \uC624\uB958: ${t.status} ${t.statusText}`);return(await t.json()).result.filter(e=>e.CAR_NUM===w).map(e=>{const{VISIT_ORDER:s,Y:d,X:n,ZIP_CODE:c,ADDRESS_FULL:u,OPEN_TIME:_,CLOSE_TIME:m,ORDER_VOLUME:a,BOX_NUM:l,OPT_ARR_TIME_HM:r,EST_PROC_TIME:N,NM_COUNT:F,BOX_COUNT:H,E:P,PLACE_ID:W}=e,z=parseInt(s),j=parseFloat(d),V=parseFloat(n),J=c,X=u,q=dt(parseInt(_)),x=ut(parseInt(m)),G=parseFloat(a),Y=parseInt(l),Z=r,K=parseInt(N),Q=parseInt(F),tt=parseInt(H),et=parseInt(P);return{visit_order:z,latitude:j,longitude:V,zip_code:J,address:X,open_time:q,close_time:x,order_volume:G,box_num:Y,arrival_time:Z,dwell_time:K,nm_count:Q,box_count:tt,e:et,place_id:W}})}catch(t){return console.error("JSON \uC77D\uAE30 \uC624\uB958:",t),[]}}function at(){window.history.back()}const D=document.getElementById("btn_back");D==null||D.addEventListener("click",at);function dt(o){const t=Math.floor(o/60),i=o%60;return`${t.toString().padStart(2,"0")}:${i.toString().padStart(2,"0")}`}function ut(o){if(o>=1440)return"23:59";{const t=Math.floor(o/60),i=o%60;return`${t.toString().padStart(2,"0")}:${i.toString().padStart(2,"0")}`}}function _t(o){const t=parseInt(o.split(":")[0]);return t>=0&&t<=11?"#FFA7A7":t>=12&&t<=14?"#FAED7D":t>=15&&t<=17?"#B7F0B1":"#6799FF"}function mt(o){const t=document.getElementById("data-list");t&&(t.innerHTML="",o.forEach((i,e)=>{const s=document.createElement("li");s.className="data-item";const d=o[e].e==1?"blue":"black",n=(e+1).toString();s.innerHTML=`
+                    <div id ="arrival_time_${n}" class="arrival-time">${i.arrival_time}</div>
+                    <div class="index-circle" 
+                        style="
+                        background-color: ${_t(o[e].arrival_time)}; 
+                        border-color: ${d}
+                        ">
+                        <span>${n}</span>
+                    </div>
+                    <div class="item-content">
+                        <div class="item-header">
+                            <div class="header-info">
+                                <div id="zipcode_${n}" class="zipcode">${i.zip_code}</div>
+                                <div id="address_${n}" class="address">${i.address.slice(0,15)+".."}</div>
+                                <div class="delivery_info_item">
+                                    <img src="./img/ico_map_pin.png">
+                                    <p id="distance_${n}">0.0km</p>
+                                    <img src="./img/ico_map_box.png">
+                                    <p id="weight_${n}">3.114kg</p>
+                                </div>
+                                <div class="delivery_info_item">
+                                    <img src="./img/ico_info.png">
+                                    <p id="status_${n}">Waiting</p>
+                                </div>
+                            </div>
+                            <img class="detail_btn" id="detail_btn_${n}" src="./img/ico_submenu.png">
+                        </div>
+                        <div class="btn_area">
+                            <div class="btn_item" id="btn_directions_${n}">
+                                <img id="img_directions_${n}" src="./img/ico_navi.png">
+                                <p id="title_directions_${n}" style="color: #0098ff">Directions</p>
+                            </div>
+                            <div class="btn_item" id="btn_call_${n}">
+                                <img id="img_call_${n}" src="./img/ico_call.png">
+                                <p id="title_call_${n}" style="color: #4cda64">Call</p>
+                            </div>
+                            <div class="btn_item" id="btn_status_${n}">
+                                <img id="img_status_${n}" src="./img/ico_start.png">
+                                <p id="title_status_${n}" style="color: #fc75b7">Departure</p>
+                            </div>
+                        </div>
+                    </div>
+                 `,t.appendChild(s),document.getElementById("detail_btn_"+n).addEventListener("click",a=>{O(a,k,e+1)}),document.getElementById("btn_directions_"+n).addEventListener("click",a=>{const l="1.3115397247608183,103.82648290864407";window.open(`https://www.google.com/maps/dir/?api=1&origin=${l}&destination=${i.latitude},${i.longitude}`,"_blank")}),document.getElementById("btn_call_"+n).addEventListener("click",a=>{window.location.href="tel:010-1111-2222"}),document.getElementById("btn_status_"+n).addEventListener("click",a=>{var r;const l=(r=document.getElementById("title_status_"+n))==null?void 0:r.innerHTML;l=="Departure"?y(I,e+1):l=="Arrive"?y(U,e+1):l=="Complete"&&y(h,e+1)}),e+1==1?y(h,e+1):e+1==2?y(I,e+1):y(R,e+1)}))}document.addEventListener("click",o=>{const t=o.target;p&&!g.contains(t)&&t.className!=="detail_btn"&&(console.log("\uC635\uC158 \uBA54\uB274 \uC678 \uC601\uC5ED \uD074\uB9AD"),console.log(t),g.remove(),p=!1)});document.addEventListener("scroll",function(o){console.log("\uC2A4\uD06C\uB864 \uC774\uBCA4\uD2B8\uAC00 \uBC1C\uC0DD\uD588\uC2B5\uB2C8\uB2E4."),g&&(g.remove(),p=!1)});function gt(o){const t=document.getElementById("dateText");t.innerText=T.slice(0,5),document.getElementById("btn_submenu").addEventListener("click",e=>{O(e,M,o)})}function ft(o,t,i){t.innerHTML=`
+            <div class="option-item">Entirety Undeliverable</div>
+            <div class="option-item">Refresh</div>
+        `,document.body.appendChild(t),p=!0,t.querySelectorAll(".option-item").forEach(e=>{e.addEventListener("click",()=>{if(console.log(`\uC120\uD0DD\uD55C \uC635\uC158: ${e.textContent}`),console.log("\uC635\uC158 \uBA54\uB274 \uC0AD\uC81C"),t.remove(),p=!1,e.textContent=="Entirety Undeliverable"){console.log("\uC804\uCCB4\uC6B4\uC1A1\uBD88\uAC00");for(var s=1;s<i+1;s++)y($,s)}else e.textContent=="Refresh"&&location.reload()})})}function pt(o,t,i){t.innerHTML=`
+        <div class="option-item">Undeliverable</div>
+    `,document.body.appendChild(t),p=!0,t.querySelectorAll(".option-item").forEach(e=>{e.addEventListener("click",()=>{console.log(`\uC120\uD0DD\uD55C \uC635\uC158: ${e.textContent}`),console.log("\uC635\uC158 \uBA54\uB274 \uC0AD\uC81C"),t.remove(),p=!1,y($,i)})})}function O(o,t,i){p&&(g.remove(),p=!1),console.log("\uC138\uBD80\uBA54\uB274 \uD074\uB9AD");const s=o.target.getBoundingClientRect();g=document.createElement("div"),g.className="option-menu",g.style.position="absolute",g.style.top=`${s.bottom+window.scrollY}px`;const n=(window.innerWidth||document.documentElement.clientWidth)*.3,c=s.right-n;g.style.left=`${c}px`,t==M?ft(o,g,i):t==k&&i!==void 0&&pt(o,g,i)}const R=0,I=1,U=2,h=3,$=4;function y(o,t){const i=document.getElementById("arrival_time_"+t),e=document.getElementById("zipcode_"+t),s=document.getElementById("address_"+t),d=document.getElementById("distance_"+t),n=document.getElementById("weight_"+t),c=document.getElementById("status_"+t),u=document.getElementById("img_directions_"+t),_=document.getElementById("title_directions_"+t),m=document.getElementById("img_call_"+t),a=document.getElementById("title_call_"+t),l=document.getElementById("img_status_"+t),r=document.getElementById("title_status_"+t);o==R?(e&&(e.style.color=ot),s&&(s.style.color=C),d&&(d.style.color=C),n&&(n.style.color=C),c&&(c.style.color=C,c.innerHTML="Waiting"),u&&m&&l&&(u.src="./img/ico_navi.png",m.src="./img/ico_call.png",l.src="./img/ico_start.png"),_&&a&&r&&(_.style.color=E,a.style.color=B,r.style.color=nt,r.innerHTML="Departure")):o==I?(e&&(e.style.color=f),s&&(s.style.color=f),d&&(d.style.color=f),n&&(n.style.color=f),c&&(c.style.color=f,c.innerHTML="In Progress"),u&&m&&l&&(u.src="./img/ico_navi.png",m.src="./img/ico_call.png",l.src="./img/ico_arrive.png"),_&&a&&r&&(_.style.color=E,a.style.color=B,r.style.color=it,r.innerHTML="Arrive")):o==U?(e&&(e.style.color=f),s&&(s.style.color=f),d&&(d.style.color=f),n&&(n.style.color=f),c&&(c.style.color=f,c.innerHTML="Arrived"),u&&m&&l&&(u.src="./img/ico_navi.png",m.src="./img/ico_call.png",l.src="./img/ico_complete.png"),_&&a&&r&&(_.style.color=E,a.style.color=B,r.style.color=st,r.innerHTML="Complete")):o==h?(i&&(i.style.backgroundColor=v),e&&(e.style.color=A),s&&(s.style.color=L),d&&(d.style.color=b),n&&(n.style.color=b),c&&(c.style.color=ct,c.innerHTML="Completed"),u&&m&&l&&(u.src="./img/ico_navi_disable.png",m.src="./img/ico_call_disable.png",l.style.visibility="hidden"),_&&a&&r&&(_.style.color=v,a.style.color=v,r.style.visibility="hidden")):o==$&&(i&&(i.style.backgroundColor=v),e&&(e.style.color=A),s&&(s.style.color=L),d&&(d.style.color=b),n&&(n.style.color=b),c&&(c.style.color=lt,c.innerHTML="Canceled"),u&&m&&l&&(u.src="./img/ico_navi_disable.png",m.src="./img/ico_call_disable.png",l.style.visibility="hidden"),_&&a&&r&&(_.style.color=v,a.style.color=v,r.style.visibility="hidden"))}async function yt(){try{const o=await rt(`/singpost-route/data/input-data/${T}`);if(o.length>0){gt(o.length),mt(o);const t=document.getElementById("floating-btn");t==null||t.addEventListener("click",()=>{console.log("Floating button clicked!")})}else console.error("\uB370\uC774\uD130\uB97C \uBD88\uB7EC\uC624\uC9C0 \uBABB\uD588\uC2B5\uB2C8\uB2E4.")}catch(o){console.error("\uB370\uC774\uD130 \uB85C\uB529 \uC624\uB958:",o)}}yt();
