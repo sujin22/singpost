@@ -1,0 +1,26 @@
+
+node_modules
+# dist/
+# package-lock.json
+
+#google api key
+.env
+
+#md
+cloud_shell_instructions.md
+
+css/
+src/
+current_schedule.html
+detail.html
+env.d.ts
+index.html
+package-lock.json
+package.json
+pre_index.html
+README.md
+route.html
+sandbox.config.json
+schedule.html
+tsconfig.json
+vite.config.json
