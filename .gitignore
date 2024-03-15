@@ -15,12 +15,12 @@ src/
 /detail.html
 env.d.ts
 /index.html
-package-lock.json
-package.json
+# package-lock.json
+# package.json
 /pre_index.html
 README.md
 route.html
-sandbox.config.json
+# sandbox.config.json
 /schedule.html
-tsconfig.json
-vite.config.json
+# tsconfig.json
+# vite.config.json
