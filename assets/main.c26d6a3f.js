@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill.c7c6310f.js";document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector("#btn_schedule");e&&e.addEventListener("click",()=>{window.location.href="./schedule.html?fname=30Oct_R2_T1_P2&car_id=CE05"})});
