@@ -11,16 +11,16 @@ cloud_shell_instructions.md
 
 css/
 src/
-current_schedule.html
-detail.html
+/current_schedule.html
+/detail.html
 env.d.ts
-index.html
+/index.html
 package-lock.json
 package.json
-pre_index.html
+/pre_index.html
 README.md
 route.html
 sandbox.config.json
-schedule.html
+/schedule.html
 tsconfig.json
 vite.config.json
