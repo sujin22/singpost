@@ -8,13 +8,13 @@
     "maps",
     "samples"
   ],
-  "homepage": "https://sujin22.github.io/singpost-deploy/",
+  "homepage": "https://sujin22.github.io/singpost-route/",
   "files": [],
   "license": "Apache-2.0",
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "vite build --outDir dist --base /singpost-deploy/",
+    "build": "vite build --outDir dist --base /singpost-route/",
     "test": "tsc --no-emit",
     "preview": "vite preview",
     "predeploy": "npm run build",
